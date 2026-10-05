@@ -1,0 +1,697 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system definition.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --font-sans: "IBM Plex Sans", "Segoe UI", sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-highlight: var(--highlight);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-panel: var(--panel);
+  --color-message: var(--message);
+  --color-message-foreground: var(--message-foreground);
+  --color-overlay: var(--overlay);
+  --color-overlay-foreground: var(--overlay-foreground);
+  --shadow-composer: var(--composer-shadow);
+}
+
+:root {
+  --radius: 0.55rem;
+  --background: oklch(0.12 0.045 264);
+  --foreground: oklch(0.97 0.018 260);
+  --card: oklch(0.19 0.05 259);
+  --card-foreground: oklch(0.97 0.018 260);
+  --popover: oklch(0.23 0.055 259);
+  --popover-foreground: oklch(0.97 0.018 260);
+  --primary: oklch(0.66 0.18 265);
+  --primary-foreground: oklch(0.98 0.01 260);
+  --secondary: oklch(0.23 0.055 259);
+  --secondary-foreground: oklch(0.92 0.025 260);
+  --muted: oklch(0.16 0.045 264);
+  --muted-foreground: oklch(0.7 0.05 260);
+  --accent: oklch(0.26 0.075 263);
+  --accent-foreground: oklch(0.95 0.025 260);
+  --highlight: oklch(0.78 0.14 220);
+  --destructive: oklch(0.58 0.18 25);
+  --destructive-foreground: oklch(0.98 0.01 25);
+  --border: oklch(0.62 0.1 260 / 18%);
+  --input: oklch(0.65 0.11 260 / 25%);
+  --ring: oklch(0.75 0.14 258);
+  --chart-1: oklch(0.66 0.18 265);
+  --chart-2: oklch(0.78 0.14 220);
+  --chart-3: oklch(0.64 0.2 295);
+  --chart-4: oklch(0.72 0.16 165);
+  --chart-5: oklch(0.78 0.16 85);
+  --sidebar: oklch(0.145 0.05 264);
+  --sidebar-foreground: oklch(0.95 0.02 260);
+  --sidebar-primary: oklch(0.66 0.18 265);
+  --sidebar-primary-foreground: oklch(0.98 0.01 260);
+  --sidebar-accent: oklch(0.25 0.075 263);
+  --sidebar-accent-foreground: oklch(0.95 0.025 260);
+  --sidebar-border: oklch(0.62 0.1 260 / 18%);
+  --sidebar-ring: oklch(0.75 0.14 258);
+  --panel: oklch(0.23 0.055 259);
+  --message: oklch(0.24 0.07 263);
+  --message-foreground: oklch(0.97 0.018 260);
+  --overlay: oklch(0.08 0.04 264 / 88%);
+  --overlay-foreground: oklch(0.98 0.01 260);
+  --composer-shadow: 0 18px 48px oklch(0.04 0.04 264 / 42%);
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    letter-spacing: 0;
+    margin: 0;
+    overflow: hidden;
+  }
+}
+
+.login-shell {
+  isolation: isolate;
+  position: relative;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  background: oklch(0.06 0.03 264);
+}
+
+.login-video-pane {
+  position: relative;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: oklch(0.04 0.02 264);
+}
+
+.login-panel {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: 100dvh;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem clamp(1.25rem, 4vw, 4rem);
+  background: linear-gradient(90deg, oklch(0.08 0.04 264 / 76%), oklch(0.045 0.025 264 / 96%));
+  border-left: 1px solid oklch(0.65 0.11 260 / 18%);
+}
+
+.login-panel > section {
+  position: relative;
+  z-index: 1;
+}
+
+.login-background-video,
+.login-background-wash {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.login-background-video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1;
+  filter: saturate(1.12) contrast(1.08) brightness(1.35);
+}
+
+.login-background-wash {
+  z-index: 1;
+  background:
+    linear-gradient(90deg, oklch(1 0 0 / 82%), oklch(1 0 0 / 56%) 48%, oklch(1 0 0 / 78%)),
+    radial-gradient(circle at 18% 30%, oklch(0.78 0.14 220 / 18%), transparent 32%),
+    radial-gradient(circle at 84% 72%, oklch(0.7 0.2 300 / 15%), transparent 35%);
+}
+
+.login-shell-subtitle {
+  color: oklch(0.78 0.04 260);
+}
+
+.login-composition {
+  position: relative;
+  z-index: 10;
+  display: grid;
+  width: min(100%, 1120px);
+  grid-template-columns: minmax(0, 1fr) 420px;
+  align-items: center;
+  gap: clamp(3rem, 8vw, 7rem);
+}
+
+.login-earth-wrap {
+  display: flex;
+  min-height: 520px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-earth {
+  position: relative;
+  width: clamp(260px, 30vw, 410px);
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 27%, oklch(0.77 0.08 220 / 30%), transparent 8%),
+    radial-gradient(circle at 42% 62%, oklch(0.18 0.08 250 / 95%), oklch(0.09 0.05 264) 72%);
+  box-shadow:
+    inset -28px -20px 50px oklch(0.03 0.05 264 / 75%),
+    inset 18px 10px 30px oklch(0.78 0.12 220 / 16%),
+    0 0 0 1px oklch(0.62 0.16 220 / 30%),
+    0 0 52px oklch(0.58 0.18 220 / 24%),
+    0 28px 70px oklch(0.24 0.12 260 / 20%);
+  transform: rotate(-12deg);
+  animation: login-earth-float 8s ease-in-out infinite;
+}
+
+.login-earth::before,
+.login-earth::after {
+  content: "";
+  position: absolute;
+  inset: -5%;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.login-earth::before {
+  z-index: 3;
+  background: radial-gradient(circle at 28% 25%, oklch(0.88 0.1 220 / 24%), transparent 28%);
+  box-shadow: inset 16px 10px 25px oklch(0.82 0.15 220 / 18%);
+}
+
+.login-earth::after {
+  z-index: 4;
+  background: linear-gradient(105deg, transparent 45%, oklch(0.76 0.17 220 / 12%) 56%, transparent 68%);
+  mix-blend-mode: screen;
+}
+
+.login-earth-video,
+.login-earth-surface,
+.login-earth-clouds,
+.login-earth-shine {
+  position: absolute;
+  inset: -8%;
+  border-radius: 50%;
+}
+
+.login-earth-video {
+  z-index: 1;
+  width: 116%;
+  height: 116%;
+  object-fit: cover;
+  filter: saturate(0.82) contrast(1.08) brightness(0.92);
+}
+
+.login-earth-fallback {
+  z-index: 0;
+  background:
+    radial-gradient(ellipse at 28% 27%, oklch(0.48 0.09 145 / 68%) 0 11%, transparent 12%),
+    radial-gradient(ellipse at 62% 48%, oklch(0.44 0.08 145 / 64%) 0 15%, transparent 16%),
+    linear-gradient(115deg, oklch(0.14 0.08 240), oklch(0.22 0.13 220) 42%, oklch(0.12 0.07 250));
+  animation: none;
+}
+
+.login-earth-surface {
+  z-index: 1;
+  background: linear-gradient(115deg, oklch(0.14 0.08 240), oklch(0.22 0.13 220) 42%, oklch(0.12 0.07 250));
+  animation: login-earth-rotate 18s linear infinite;
+}
+
+.login-earth-land {
+  position: absolute;
+  display: block;
+  background: oklch(0.48 0.09 145 / 88%);
+  filter: drop-shadow(0 0 5px oklch(0.52 0.12 145 / 14%));
+  opacity: 0.92;
+}
+
+.login-earth-land-one {
+  top: 14%;
+  left: 8%;
+  width: 39%;
+  height: 32%;
+  clip-path: polygon(0 28%, 18% 14%, 34% 18%, 43% 4%, 68% 16%, 85% 9%, 100% 28%, 89% 45%, 74% 47%, 67% 72%, 48% 65%, 35% 83%, 16% 67%, 4% 75%);
+}
+
+.login-earth-land-two {
+  top: 20%;
+  right: 3%;
+  width: 30%;
+  height: 25%;
+  background: oklch(0.53 0.1 145 / 88%);
+  clip-path: polygon(10% 0, 38% 9%, 52% 2%, 72% 20%, 100% 25%, 86% 48%, 91% 75%, 67% 69%, 55% 100%, 33% 77%, 7% 85%, 17% 55%, 0 31%);
+}
+
+.login-earth-land-three {
+  top: 48%;
+  left: 39%;
+  width: 30%;
+  height: 35%;
+  background: oklch(0.45 0.08 145 / 90%);
+  clip-path: polygon(26% 0, 51% 12%, 73% 9%, 84% 29%, 100% 44%, 83% 55%, 78% 76%, 61% 70%, 50% 100%, 32% 80%, 15% 85%, 17% 58%, 0 43%, 16% 21%);
+}
+
+.login-earth-land-four {
+  top: 67%;
+  left: 9%;
+  width: 21%;
+  height: 17%;
+  background: oklch(0.55 0.1 145 / 76%);
+  clip-path: polygon(8% 19%, 35% 0, 67% 14%, 100% 9%, 88% 43%, 97% 69%, 60% 100%, 38% 77%, 0 83%);
+}
+
+.login-earth-clouds {
+  z-index: 2;
+  background:
+    repeating-linear-gradient(165deg, transparent 0 16px, oklch(0.92 0.04 220 / 18%) 18px 21px, transparent 24px 42px),
+    repeating-linear-gradient(12deg, transparent 0 28px, oklch(0.8 0.08 220 / 11%) 31px 34px, transparent 39px 58px);
+  filter: blur(3px);
+  opacity: 0.72;
+  mix-blend-mode: screen;
+  animation: login-earth-cloud-drift 12s linear infinite;
+}
+
+.login-earth-shine {
+  z-index: 5;
+  background: linear-gradient(125deg, oklch(0.98 0.04 220 / 22%), transparent 25% 68%, oklch(0.02 0.04 264 / 25%));
+}
+
+.login-earth-caption {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.75rem;
+  color: oklch(0.39 0.06 264);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.login-status-dot {
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 999px;
+  background: oklch(0.68 0.2 150);
+  box-shadow: 0 0 12px oklch(0.68 0.2 150 / 70%);
+}
+
+.login-earth-coordinate {
+  margin-top: 0.5rem;
+  color: oklch(0.56 0.06 264);
+  font-family: monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+}
+
+.login-shell-footer {
+  color: oklch(0.72 0.04 260);
+}
+
+.login-credential {
+  color: oklch(0.7 0.05 260);
+}
+
+.login-stars {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.6;
+  background-image:
+    radial-gradient(circle, oklch(0.42 0.08 250 / 28%) 0 0.8px, transparent 1px),
+    radial-gradient(circle, oklch(0.55 0.14 220 / 22%) 0 0.7px, transparent 1px),
+    radial-gradient(circle, oklch(0.5 0.12 290 / 18%) 0 0.6px, transparent 0.9px);
+  background-position: 12px 20px, 92px 68px, 150px 120px;
+  background-size: 170px 190px, 240px 220px, 310px 270px;
+  animation: login-stars-drift 24s linear infinite;
+}
+
+.login-nebula {
+  position: absolute;
+  z-index: 2;
+  width: 28rem;
+  height: 28rem;
+  border-radius: 999px;
+  pointer-events: none;
+  filter: blur(70px);
+  opacity: 0.28;
+  animation: login-nebula-float 13s ease-in-out infinite alternate;
+}
+
+.login-nebula-one {
+  top: -12rem;
+  left: -10rem;
+  background: oklch(0.46 0.19 245 / 28%);
+}
+
+.login-nebula-two {
+  right: -12rem;
+  bottom: -14rem;
+  background: oklch(0.46 0.2 300 / 25%);
+  animation-delay: -6s;
+}
+
+.login-orbit {
+  position: absolute;
+  z-index: 2;
+  width: min(72vw, 760px);
+  height: min(28vw, 300px);
+  border: 1px solid oklch(0.52 0.14 260 / 17%);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: rotate(-18deg);
+  animation: login-orbit-breathe 9s ease-in-out infinite;
+}
+
+.login-orbit-one {
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%) rotate(-18deg);
+}
+
+.login-orbit-two {
+  bottom: 9%;
+  left: 50%;
+  width: min(60vw, 640px);
+  height: min(22vw, 240px);
+  transform: translateX(-50%) rotate(22deg);
+  animation-delay: -4s;
+}
+
+.login-orbit-dot {
+  position: absolute;
+  top: 50%;
+  right: -0.3rem;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: var(--color-highlight);
+  box-shadow: 0 0 18px oklch(0.78 0.14 220 / 80%);
+}
+
+.login-brand-mark {
+  background: oklch(1 0 0);
+  border: 1px solid oklch(0.86 0.02 264);
+  box-shadow: 0 10px 26px oklch(0.2 0.04 264 / 18%), 0 0 0 4px oklch(1 0 0 / 12%);
+}
+
+.login-brand-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transform: none;
+}
+
+.login-card {
+  position: relative;
+  overflow: hidden;
+  background: oklch(0.16 0.05 264 / 82%);
+  box-shadow:
+    0 28px 80px oklch(0.04 0.04 264 / 42%),
+    inset 0 1px 0 oklch(0.88 0.08 260 / 10%);
+  backdrop-filter: blur(22px);
+}
+
+.login-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 12% auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, oklch(0.75 0.14 260 / 45%), transparent);
+}
+
+@keyframes login-earth-rotate {
+  from { transform: translateX(-3%); }
+  to { transform: translateX(3%); }
+}
+
+@keyframes login-earth-cloud-drift {
+  from { transform: translateX(-3%); }
+  to { transform: translateX(3%); }
+}
+
+@keyframes login-earth-float {
+  0%, 100% { transform: translateY(0) rotate(-12deg); }
+  50% { transform: translateY(-10px) rotate(-9deg); }
+}
+
+@keyframes login-stars-drift {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-24px, 18px, 0); }
+}
+
+@keyframes login-nebula-float {
+  from { transform: translate3d(-12px, 8px, 0) scale(0.96); }
+  to { transform: translate3d(18px, -12px, 0) scale(1.05); }
+}
+
+@keyframes login-orbit-breathe {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+.space-workspace {
+  isolation: isolate;
+  position: relative;
+  background: oklch(1 0 0);
+  color: oklch(0.26 0.02 264);
+}
+
+.space-workspace::before,
+.space-workspace::after {
+  display: none;
+}
+
+.space-workspace .text-foreground {
+  color: oklch(0.26 0.02 264);
+}
+
+.space-workspace .text-muted-foreground {
+  color: oklch(0.48 0.02 264);
+}
+
+.space-workspace .bg-background {
+  background-color: oklch(1 0 0);
+}
+
+.space-workspace .bg-sidebar {
+  background-color: oklch(0.97 0.005 264);
+  color: oklch(0.26 0.02 264);
+}
+
+.space-workspace .bg-sidebar-accent {
+  background-color: oklch(0.93 0.015 264);
+  color: oklch(0.26 0.02 264);
+}
+
+.space-workspace::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.28;
+  background-image:
+    radial-gradient(circle, oklch(0.98 0.02 250 / 42%) 0 0.7px, transparent 0.9px),
+    radial-gradient(circle, oklch(0.8 0.08 220 / 30%) 0 0.6px, transparent 0.85px),
+    radial-gradient(circle, oklch(0.9 0.04 290 / 22%) 0 0.55px, transparent 0.8px);
+  background-position: 12px 18px, 65px 92px, 138px 34px;
+  background-size: 154px 178px, 223px 201px, 281px 247px;
+}
+
+.space-workspace::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% -20%, oklch(0.52 0.18 265 / 9%), transparent 48%),
+    radial-gradient(ellipse at 100% 60%, oklch(0.5 0.16 300 / 6%), transparent 42%);
+}
+
+.space-workspace > .grid {
+  position: relative;
+  z-index: 1;
+}
+
+.space-workspace > .grid > main {
+  background: oklch(1 0 0);
+}
+
+.space-workspace > .grid > main > header {
+  background: oklch(1 0 0);
+  backdrop-filter: none;
+}
+
+.space-workspace aside {
+  background: oklch(0.97 0.005 264);
+  backdrop-filter: none;
+}
+
+.space-workspace .bg-primary {
+  background-image: linear-gradient(135deg, oklch(0.68 0.18 265), oklch(0.61 0.2 300));
+  box-shadow: 0 8px 22px oklch(0.35 0.16 270 / 24%);
+}
+
+.space-workspace .bg-primary:hover {
+  background-image: linear-gradient(135deg, oklch(0.73 0.18 265), oklch(0.66 0.2 300));
+  box-shadow: 0 10px 28px oklch(0.4 0.18 270 / 34%);
+}
+
+.space-workspace .bg-card {
+  background-color: oklch(1 0 0);
+  color: oklch(0.26 0.02 264);
+  box-shadow: 0 12px 30px oklch(0.2 0.02 264 / 8%);
+  backdrop-filter: none;
+}
+
+.space-workspace .border-border,
+.space-workspace .border-input,
+.space-workspace .border-sidebar-border {
+  border-color: oklch(0.88 0.015 264);
+}
+
+.space-workspace [class*="bg-muted"] {
+  background-color: oklch(0.965 0.005 264);
+}
+
+.space-workspace input,
+.space-workspace textarea {
+  color: var(--color-foreground);
+}
+
+.space-workspace input::placeholder,
+.space-workspace textarea::placeholder {
+  color: oklch(0.7 0.05 260 / 72%);
+}
+
+.space-workspace [data-state="active"] {
+  color: var(--color-foreground);
+}
+
+.space-workspace button:focus-visible,
+.space-workspace input:focus-visible,
+.space-workspace textarea:focus-visible {
+  box-shadow: 0 0 0 3px oklch(0.66 0.18 265 / 18%);
+}
+
+@keyframes typing-pulse {
+  0%, 80%, 100% { opacity: 0.28; transform: translateY(0); }
+  40% { opacity: 1; transform: translateY(-2px); }
+}
+
+@utility typing-dot {
+  display: inline-block;
+  width: 0.3rem;
+  height: 0.3rem;
+  border-radius: 999px;
+  background: currentColor;
+  animation: typing-pulse 1.15s infinite ease-in-out;
+
+  &:nth-child(2) { animation-delay: 0.15s; }
+  &:nth-child(3) { animation-delay: 0.3s; }
+}
+
+@media (max-width: 1023px) {
+  .login-shell {
+    display: block;
+  }
+
+  .login-video-pane {
+    position: absolute;
+    inset: 0;
+    min-height: 100%;
+  }
+
+  .login-panel {
+    min-height: 100dvh;
+    background: oklch(0.05 0.03 264 / 62%);
+    border-left: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .login-stars,
+  .login-nebula,
+  .login-orbit,
+  .login-earth,
+  .login-earth-surface,
+  .login-earth-clouds {
+    animation: none;
+  }
+
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
